@@ -1,0 +1,150 @@
+<% if (typeof message != 'undefined') { 
+    if (message == "Failed")
+    {  %>
+        <div class="alert alert-dismissable bg-red">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <%= message %>
+        </div>
+    <% } else 
+    { %>
+        <div class="alert alert-dismissable bg-green">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <%= message %>
+        </div>
+    <%}}; %>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>ADD NEW </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <form id="form_advanced_validation" action="/product/add" method="POST" enctype="multipart/form-data">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="productname" required>
+                            <label class="form-label">Tên sản phẩm</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="productcode" required>
+                            <label class="form-label">Mã sản phẩm</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="quantity" required>
+                            <label class="form-label">Số lượng</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="price" required>
+                            <label class="form-label">Đơn giá</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="form-group form-float">
+                            <div class="col-sm-4">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="" name="width">
+                                    <label class="form-label">Chiều dài</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="" name="height">
+                                    <label class="form-label">Chiều cao</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="" name="weight">
+                                    <label class="form-label">Khối lượng</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="form-group form-float">
+                            <div class="col-sm-12">
+                                <div class="form-label">Mô tả</div>
+                                <div class="form-line">
+                                    <div id="toolbar">
+                                        <select class="ql-size">
+                                            <option value="small"></option>
+                                            <!-- Note a missing, thus falsy value, is used to reset to default -->
+                                            <option selected></option>
+                                            <option value="large"></option>
+                                            <option value="huge"></option>
+                                        </select>
+                                          <!-- Add a bold button -->
+                                          <button class="ql-bold"></button>
+                                          <!-- Add subscript and superscript buttons -->
+                                          <button class="ql-script" value="sub"></button>
+                                          <button class="ql-script" value="super"></button>
+                                    </div>
+                                    <div id="editor" style="height: 300px;">
+
+                                    </div>
+                                    <input type="text" style="display: none;" name="description">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="from-group form-float">
+                            <div class="col-sm-12">
+                                <div class="form-line">
+                                    <label class="form-label">Ảnh</label>
+                                    <input type="file" class="form-control" name="image" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary waves-effect" onclick="formatField()"  type="submit">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+  
+    var editor = new Quill('#editor', {
+        modules:{
+            toolbar:"#toolbar"
+        },
+        theme: 'snow'  // or 'bubble'
+    });
+  
+  
+    function formatField(){
+      var editor = document.querySelector(".ql-editor").contentEditable = false;
+      var clipboard = document.querySelector(".ql-clipboard").contentEditable = false;
+      var bar = document.querySelector("input[type=text]").type="hidden"
+      var p = document.querySelector("#editor");
+      var myInput = document.querySelector("input[name=description]");
+      myInput.value = p.innerHTML;
+    }
+  
+  
+  </script> 
