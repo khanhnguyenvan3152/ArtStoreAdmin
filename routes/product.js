@@ -5,10 +5,23 @@ const path = require('path');
 const multer = require('multer');
 const upload = multer({dest:'./public/uploads/product'});
 
-router.get('/',function(req,res,next){
-    const list = Product.find({});
-    res.render("partials/product/view",{list:list})
+router.get('',function(req,res,next){
+    let page = (typeof req.query.page != 'undefined')?req.query.page:1;
+    console.log(page);
+    let pageSize = 10;
+    Product.find().skip(page*pageSize).limit(pageSize).exec((err,products)=>{
+        Product.countDocuments((err,count)=>{   
+            if(err) return next(err);
+            res.render('partials/product/table',{
+                products:products,
+                current:page,
+                pages:Math.ceil(count/pageSize)
+            })
+        })
+    })
 })
+
+
 router.get('/add', function(req,res,next){
     res.render("partials/product/add");
 })
@@ -24,9 +37,10 @@ router.post('/add', upload.single('image'), async function(req,res,next){
             res.status(401).json({error: 'Please provide an image'});
         }
         req.body.image = req.file.path.split('\\').slice(1).join('\\');
-        console.log(req.body.image);
+        let grouptype = req.body.grouptype.split('|');
+        let colors = req.body.checklist;
         let product = new Product({
-            name:req.body.name,
+            name:req.body.productname,
             productCode: req.body.productcode,
             quantity: req.body.quantity,
             price: req.body.price,
@@ -36,6 +50,9 @@ router.post('/add', upload.single('image'), async function(req,res,next){
                 height:req.body.height,
                 weight: req.body.weight
             },
+            type:grouptype[1],
+            group:grouptype[0],
+            colors:colors,
             description: req.body.description
         });
         product.save().then(result => {
@@ -48,14 +65,18 @@ router.post('/add', upload.single('image'), async function(req,res,next){
         })
     }
 })
-
-router.get('/edit/:productcode',function(req,res,next){
-    let productCode = req.params.productcode;
+router.get('/detail/:productCode', async function(req,res,next){
+    let productCode = req.params.productCode;
+    let product = await Product.findOne({productCode:productCode});
+    res.render("partials/product/detail",{product:product});
+})
+router.get('/edit/:productCode', async function(req,res,next){
+    let productCode = req.params.productCode;
     let product = Product.findOne({productCode:productCode});
-    res.render("partails/product/edit",{product:product});
+    res.render("partials/product/edit",{product:product});
 })
 
-router.post('/edit/:productcode',function(req,res,next){
+router.post('/edit/:productcode',async function(req,res,next){
     let productCode = req.params.productcode;
     
 })
