@@ -134,7 +134,7 @@
                             <label for="selectBrand">Thương Hiệu</label>
                             <select id="selectBrand" style="text-transform: capitalize;" name="grouptype" class="selectBrand">
                                <% listBrand.forEach(optionBrand =>{%>
-                                        <option style="text-transform: capitalize;"  value=<%= optionBrand.alias %>><%=optionBrand.name%></option>
+                                        <option style="text-transform: capitalize;"  value=<%= optionBrand.alias %> <%= (product.brand==(optionBrand.alias)) ? 'selected' :'' %>><%=optionBrand.name%></option>
                                <%})%>
                             </select>
                     </div>
