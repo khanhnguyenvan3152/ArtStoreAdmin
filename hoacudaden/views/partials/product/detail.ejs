@@ -26,7 +26,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
-                <h2>ADD NEW </h2>
+                <h2>Update <%= product.productCode %></h2>
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +96,26 @@
                                 group: {name:"chì màu",alias:"chi-mau"},
                                 type: [
                                     { name:"chì màu khô",alias:"chi-mau-kho"},
-                                    { name:"chì màu nước",alias:"chi-mau-nuoc"},
+                                    { name:"chì màu nước",alias:"chi-mau-nuoc"}
+                                    ]
+                            },
+                            {
+                                group: {name:"SỔ / GIẤY VẼ",alias:"so-giay"},
+                                type: [
+                                    { name:"sổ vẽ",alias:"so-ve"},
+                                    { name:"sổ viết",alias:"so-viet"}
+                                    ]
+                            },
+                            {
+                                group: {name:"PHỤ KIỆN MỸ THUẬT - KIẾN TRÚC",alias:"phu-kien"},
+                                type: [
+                                    { name:"phụ kiện",alias:"phu-kien"}
+                                    ]
+                            },
+                            {
+                                group: {name:"VĂN PHÒNG PHẨM SỈ -LẺ",alias:"van-phong"},
+                                type: [
+                                    { name:"VĂN PHÒNG PHẨM SỈ -LẺ",alias:"van-phong"}
                                     ]
                             }
                         ] ;
