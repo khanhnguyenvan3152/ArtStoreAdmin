@@ -1,0 +1,326 @@
+<link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
+<link href="/css/list_image_product.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.2.6/quill.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<% if (typeof message != 'undefined') { 
+    if (message == "Failed")
+    {  %>
+        <div class="alert alert-dismissable bg-red">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <%= message %>
+        </div>
+    <% } else 
+    { %>
+        <div class="alert alert-dismissable bg-green">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <%= message %>
+        </div>
+    <%}}; %>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>ADD NEW </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);">Action</a></li>
+                            <li><a href="javascript:void(0);">Another action</a></li>
+                            <li><a href="javascript:void(0);">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                    <form id="form_advanced_validation"></form>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="productname" id="productname">
+                            <label class="form-label">Tên sản phẩm</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="productcode"  id="productcode">
+                            <label class="form-label">Mã sản phẩm</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="quantity" id="quantity" >
+                            <label class="form-label">Số lượng</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" value="" name="price" id="price">
+                            <label class="form-label">Đơn giá</label>
+                        </div>
+                        <div class="help-info"></div>
+                    </div>
+                    <% const listSelect=[
+                        {
+                            group: {name: "bút",alias:"but"},
+                            type: [
+                                { name:"bút line",alias:"but-line"},
+                                { name:"bút calligraphy",alias:"but-calligraphy"},
+                                { name:"bút gel mực trắng",alias:"but-gel-muc-trang"},
+                                { name:"bút dạ quang",alias:"but-da-quang"},
+                                { name:"bút sơn",alias:"but-son"},
+                                { name:"bút sắt, mực vẽ",alias:"muc-ve"},
+                                ]
+                            },
+                            {
+                                group: {name:"màu mực",alias:"mau-muc"},
+                                type: [
+                                    { name:"màu nước",alias:"mau-nuoc"},
+                                    { name:"màu gouache",alias:"mau-gouache"},
+                                    { name:"màu acrylic",alias:"mau-acrylic"},
+                                    { name:"màu poster",alias:"mau-poster"},
+                                    { name:"phấn tiên",alias:"phan-tien"}
+                                    ]
+                            },
+                            {
+                                group: {name:"chì màu",alias:"chi-mau"},
+                                type: [
+                                    { name:"chì màu khô",alias:"chi-mau-kho"},
+                                    { name:"chì màu nước",alias:"chi-mau-nuoc"},
+                                    ]
+                            }
+                        ] ;
+                        // '','Hưng Thịnh','Casio','Iphone','HOLBEIN','Da Đen','Da Đỏ'
+                        const listBrand=[
+                        { name:"Phúc Long",alias:"phuc-long"},
+                        { name:"Casio",alias:"Casio"},
+                        { name:"Iphone",alias:"Iphone"},
+                        { name:"HOLBEIN",alias:"HOLBEIN"},
+                        { name:"Da Đen",alias:"da-den"},
+                        { name:"Da Đỏ",alias:"da-do"}]
+                        
+                        %>
+                    <div class="form-group form-float">
+                        <div class="form-line" style="text-transform: capitalize;">
+                            <label for="selectBrand">Thương Hiệu</label>
+                            <select id="selectBrand" style="text-transform: capitalize;" name="grouptype" class="selectBrand">
+                               <% listBrand.forEach(optionBrand =>{%>
+                                        <option style="text-transform: capitalize;" value=<%= optionBrand.alias %>><%=optionBrand.name%></option>
+                               <%})%>
+                            </select>
+                    </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line" style="text-transform: capitalize;">
+                            <label for="selectgroup">Thể loại</label>
+                            <select id="myselect" style="text-transform: capitalize;" name="grouptype" class="myselect">
+                               <% listSelect.forEach(optiongroup =>{%>
+                                    <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group.name%>>
+                                    <% optiongroup.type.forEach(option =>{ let value = optiongroup.group.alias +'|'+ option.alias ; %>
+                                        <option style="text-transform: capitalize;" value=<%= value %>><%=option.name%></option>
+                                    <%})%>
+                                    </optgroup>
+                               <%})%>
+                            </select>
+                    </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="form-group form-float">
+                            <div class="col-sm-4">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="" name="width" id="chieudai">
+                                    <label class="form-label">Chiều dài</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="" name="height" id="chieurong">
+                                    <label class="form-label">Chiều cao</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="" name="weight" id="khoiluong">
+                                    <label class="form-label">Khối lượng</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="">Màu sắc</label>
+                            <input type="checkbox" id="md_checkbox_21" name="checklist[]" value="red" class="filled-in chk-col-red myCheckBox"/>
+                            <label for="md_checkbox_21">RED</label>
+                            <input type="checkbox" id="md_checkbox_22" name="checklist[]" value="pink" class="filled-in chk-col-pink myCheckBox"/>
+                            <label for="md_checkbox_22">PINK</label>
+                            <input type="checkbox" id="md_checkbox_23" name="checklist[]" value="purple" class="filled-in chk-col-purple myCheckBox"/>
+                            <label for="md_checkbox_23">PURPLE</label>
+                            <input type="checkbox" id="md_checkbox_24" name="checklist[]" value="deep-purple" class="filled-in chk-col-deep-purple myCheckBox"/>
+                            <label for="md_checkbox_24">DEEP PURPLE</label>
+                            <input type="checkbox" id="md_checkbox_25" name="checklist[]" value="indigo" class="filled-in chk-col-indigo myCheckBox"/>
+                            <label for="md_checkbox_25">INDIGO</label>         
+                            <input type="checkbox" id="md_checkbox_26" name="checklist[]" value="black" class="filled-in chk-col-black myCheckBox"/>
+                            <label for="md_checkbox_26">BLACK</label>                        
+                        </div>
+                    </div>
+                  
+                    <textarea class="textarea" id="description" name="description"></textarea>
+                    <div id="list-product-image" class="grid-list-img"> </div>
+                    <div class="row clearfix" style="margin-top: 15px;">
+                        <div class="from-group form-float">
+                            <div class="col-sm-12">
+                                <div class="form-line">
+                                    <label class="form-label">Ảnh (Lưu ý : Ảnh đầu tiên là ảnh đại diện )</label>
+                                    <input type="file" class="form-control" name="image" value="" id="file">
+                                    <button id="btnAddImage" style="margin-top: 7px;">Thêm Ảnh</button>
+                                    <div id="loading">
+                                                <p><img src="/images/ajax-loader.gif"/>Vui lòng chờ !</p>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary waves-effect" id="addProduct"  >Thêm sản phẩm</button>
+                    </div>
+                   
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function (e) {
+            $('#loading').hide();
+
+        });
+        $('#description').summernote({
+            placeholder: 'Hello stand alone ui',
+            tabsize: 2,
+            height: 420,
+        });
+        $('#btnAddImage').click(function () {
+            $('#loading').show();
+            $('#btnAddImage').prop('disabled', true);
+            $('#file').prop('disabled', true);
+            var file_data = $('#file').prop('files')[0];
+            if (file_data == null) {
+                alert('vui long chon anh');
+            }
+            else {
+                var form_data = new FormData();
+                form_data.append('file', file_data);
+                $.ajax({
+                    url: '/upload', // point to server-side controller method
+                    cache: false,
+                    enctype: 'multipart/form-data',
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    method: 'POST',
+                    success: function (response) {
+                        $('#list-product-image').append('<div class="grid-item">\n' +
+                            '                                                                    <div class="img-container">\n' +
+                            '                                                                        <div class="img-div">\n' +
+                            '                                                                            <img src="' + response + '" alt="product img">\n' +
+                            '                                                                        </div>\n' +
+                            '                                                                    </div>\n' +
+                            '                                                                    <div class="remove-img" onclick="removeProductImage(this)">\n' +
+                            '                                                                        <i class="fas fa-times-circle"></i>\n' +
+                            '                                                                    </div>\n' +
+                            '                                                                    \n' +
+                            '                                                                </div>');
+                        $('#loading').hide();
+                        $('#btnAddImage').prop('disabled', false);
+                        $('#file').prop('disabled', false);
+                    },
+                    error: function (response) {
+                        alert('ảnh không hợp lệ ! Vui lòng chọn ảnh khác hoặc xem lại định dạng ảnh ! ');
+                        $('#loading').hide();
+                        $('#btnAddImage').prop('disabled', false);
+                        $('#file').prop('disabled', false);
+                    }
+                });
+            }
+        });
+        $('#addProduct').click(function () {
+            var name = $('#productname').val();
+            var code = $('#productcode').val();
+            var quantity = $('#quantity').val();
+            var price = $('#price').val();
+            var category = $('#myselect').val().split('|');
+            var type = category[1];
+            var group = category[0];
+            var chieudai = $('#chieudai').val();
+            var chieurong = $('#chieurong').val();
+            var khoiluong = $('#khoiluong').val();
+            var selectBrand = $('#selectBrand').val();
+            var description = $('#description').val();
+            var features = {
+                width: chieudai,
+                height: chieurong,
+                weight: khoiluong,
+            }
+            console.log(name);
+            console.log(code);
+            console.log(quantity);
+            console.log(price);
+            console.log("category :" + category);
+            console.log(chieudai);
+            console.log(chieurong);
+            console.log(khoiluong);
+            console.log(description);
+            var colors = [];
+            $('.myCheckBox').each(function () {
+                if (this.checked === true) {
+                    colors.push($(this).val());
+                }
+            });
+            var images = [];
+
+
+            $('#list-product-image .grid-item .img-container .img-div img').each(function () {
+                images.push($(this).attr('src'));
+            })
+            var data = {
+                productCode: code,
+                quantity: quantity,
+                price: price,
+                name: name,
+                brand: selectBrand,
+                features: features,
+                colors: colors,
+                group: group,
+                type: type,
+                images: images,
+                description: description
+            };
+            var myJson  = JSON.stringify(data);
+            $.ajax({
+                url: '/product/add',
+                data: myJson,
+                type: 'post',
+                method: 'POST',
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    alert(data)
+                },
+                error: function (data) {
+                    alert(data)
+                }
+            }
+            )
+        });
+  </script>
