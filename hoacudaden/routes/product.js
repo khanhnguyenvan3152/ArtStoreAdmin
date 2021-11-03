@@ -38,6 +38,7 @@ router.post('/add',  async function(req,res,next){
             type:req.body.type,
             group:req.body.group,
             colors:req.body.colors,
+            options:req.body.options,
             description: req.body.description
         });
         product.save().then(result => {
@@ -73,6 +74,7 @@ router.put('/update/:productCode', async function(req,res){
                 type:req.body.type,
                 group:req.body.group,
                 colors:req.body.colors,
+                brand:req.body.brand,
                 description: req.body.description
             }
         })
