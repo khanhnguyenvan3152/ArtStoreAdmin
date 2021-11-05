@@ -9,6 +9,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<style>
+        .pull-left{
+        text-transform: capitalize !important;
+    }
+</style>
 <% if (typeof message != 'undefined') { 
     if (message == "Failed")
     {  %>
@@ -77,9 +82,12 @@
                             type: [
                                 { name:"bút line",alias:"but-line"},
                                 { name:"bút calligraphy",alias:"but-calligraphy"},
+                                { name:"bút chì phác thảo", alias:"but-chi-phac-thao"}
                                 { name:"bút gel mực trắng",alias:"but-gel-muc-trang"},
                                 { name:"bút dạ quang",alias:"but-da-quang"},
                                 { name:"bút sơn",alias:"but-son"},
+                                { name:"bút chì kim", alias:"but-chi-kim"},
+                                { name:"ngòi chì", alias:"ngòi chì"},
                                 { name:"bút sắt, mực vẽ",alias:"muc-ve"},
                                 ]
                             },
@@ -110,7 +118,7 @@
                             {
                                 group: {name:"PHỤ-KIỆN",alias:"phu-kien"},
                                 type: [
-                                    { name:"phụ kiện",alias:"phu-kien"}
+                                    { name:"phụ kiện",alias:"phu-kien"} 
                                     ]
                             },
                             {
@@ -127,14 +135,20 @@
                         { name:"Iphone",alias:"Iphone"},
                         { name:"HOLBEIN",alias:"HOLBEIN"},
                         { name:"Da Đen",alias:"da-den"},
-                        { name:"Da Đỏ",alias:"da-do"}]
-                        
+                        { name:"Da Đỏ",alias:"da-do"},
+                        { name:"KLONG", alias:"KLONG"},
+                        { name:"miya", alias:"miya"},
+                        { name:"Sakura", alias:"Sakura"},
+                        { name: "STABILO", alias:"STABILO"},
+                        { name: "SONNET", alias:"SONNET"},
+                        { name:"Khác",alias:"Khác"}
+                        ]
                         %>
                         <div class="form-group form-float">
                             <div class="col-lg-1 col-sm-12" style="padding: 0;">
                                 <label for="selectBrand">Thương Hiệu</label>
                             </div>
-                            <div class="col-lg-10 col-sm-12" style="padding: 0 ;">
+                            <div class="col-lg-11 col-sm-12" style="padding: 0 ;">
                             <select id="selectBrand" style="text-transform: capitalize;" name="brand" class="selectBrand">
                                 <% listBrand.forEach(optionBrand =>{%>
                                          <option style="text-transform: capitalize;" value=<%= optionBrand.alias %>><%=optionBrand.name%></option>
@@ -142,11 +156,11 @@
                              </select>
                             </div>
                         </div>
-                    <div class="form-group form-float">
-                            <div class="col-lg-1" style="padding: 0;">
+                    <div class="form-group form-floa">
+                            <div class="col-lg-1 col-sm-12 col-md-1" style="padding: 0;">
                                 <label for="selectgroup">Thể loại</label>
                             </div>
-                            <div class="col-lg-11" style="padding: 0;">
+                            <div class="col-lg-11 col-sm-12 col-md-11" style="padding: 0;">
                                 <select id="myselect" style="text-transform: capitalize;" name="grouptype" class="myselect">
                                 <% listSelect.forEach(optiongroup =>{%>
                                         <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group.name%>>
@@ -156,7 +170,7 @@
                                         </optgroup>
                                 <%})%>
                                 </select>
-                            </div>
+                            </div>  
                     </div>
                     <div class="row clearfix">
                         <div class="form-group form-float">
@@ -385,8 +399,6 @@
             var optionDiv = $("#option-div")
             var inputOption = $(".input-option")
             optionDiv.append(" <input type='text' name='option' value ='' placeholder='Lựa chọn'/>");
-            
-            console.log(option)
         })
         $("#btnRemoveChoice").click(function(){
             var optionDiv = $("#option-div")

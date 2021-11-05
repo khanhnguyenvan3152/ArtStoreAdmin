@@ -175,6 +175,26 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row clearfix">
+                        <div class="form-group form-float">
+                            <div class="col-lg-1">
+                                <label for="option">
+                                    Tùy chọn
+                                </label>
+                            </div>
+                            <div class="col-md-8 col-lg-8 col-sm-12" id="option-div">
+                                <input class="input-option" type="text" name="option" value="" placeholder="Lựa chọn"/>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-12">
+                                    <button id="btnAddChoice" class="btn">
+                                        Thêm lựa chọn
+                                    </button>
+                                    <button id="btnRemoveChoice" class="btn btn-danger">
+                                        Bớt lựa chọn
+                                    </button>
+                                </div>
+                            </div>
+                       </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label class="">Màu sắc</label>
@@ -309,6 +329,13 @@
                 height: chieurong,
                 weight: khoiluong,
             }
+            var options = [];
+            $("[name='option']").each(function(){
+                if($(this).val()!="")
+                {
+                    option.push($(this).val())
+                }
+            })
             console.log(name);
             console.log(code);
             console.log(quantity);
@@ -340,6 +367,7 @@
                 colors: colors,
                 group: group,
                 type: type,
+                options:options,
                 images: images,
                 description: description
             };
@@ -359,4 +387,18 @@
             }
             )
         });
+        $("#btnAddChoice").click(function(){
+            var optionDiv = $("#option-div")
+            var inputOption = $(".input-option")
+            optionDiv.append(" <input type='text' name='option' value ='' placeholder='Lựa chọn'/>");
+            
+            console.log(option)
+        })
+        $("#btnRemoveChoice").click(function(){
+            var optionDiv = $("#option-div")
+            if(optionDiv.children().length>1)
+            {
+                optionDiv.children().last().remove()
+            }
+        })
   </script>

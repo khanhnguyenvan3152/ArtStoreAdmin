@@ -28,6 +28,13 @@ router.get('/add', function(req,res,next){
 })
 
 router.post('/add',  async function(req,res,next){
+    let check = await Product.count({productCode:req.body.productCode}).exec();
+    if(check!==0)
+    {
+        res.send('Mã sản phẩm đã tồn tại');
+    }
+    else
+    {
         let product = new Product({
             name: req.body.name,
             productCode: req.body.productCode,
@@ -50,7 +57,7 @@ router.post('/add',  async function(req,res,next){
             console.log(err);
             res.send('upload Failed !')
         })
-    
+    }
 })
 // router.post('/add', async function(req,res,next){
 
