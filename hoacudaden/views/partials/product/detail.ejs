@@ -143,13 +143,13 @@
                         <div class="form-line" style="text-transform: capitalize;">
                             <label for="selectgroup">Thể loại</label>
                             <select id="myselect" style="text-transform: capitalize;" name="grouptype" class="myselect">
-                               <% listSelect.forEach(optiongroup =>{%>
-                                    <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group.name%>>
-                                    <% optiongroup.type.forEach(option =>{ let value = optiongroup.group.alias +'|'+ option.alias ; %>
-                                        <option style="text-transform: capitalize;" value=<%= value %> <%= (product.group==(optiongroup.group.alias)&&product.type==(option.alias)) ? 'selected' :'' %> ><%=option.name%>  </option>
+                               <% categories.forEach(optiongroup =>{ if(optiongroup.isactive==true){ %>
+                                    <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group%>>
+                                    <% optiongroup.type.forEach(option =>{ let value = optiongroup.group +'|'+ option ; %>
+                                        <option style="text-transform: capitalize;" value="<%= value %>" <%= (product.group==(optiongroup.group)&&product.type==(option)) ? 'selected' :'' %> ><%=option%>  </option>
                                     <%})%>
                                     </optgroup>
-                               <%})%>
+                               <%}})%>
                             </select>
                     </div>
                     </div>

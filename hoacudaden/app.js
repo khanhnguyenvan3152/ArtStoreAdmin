@@ -11,6 +11,7 @@ var authRouter = require('./routes/auth');
 var productRouter = require('./routes/product');
 var uploadRouter = require('./routes/upload');
 var billRouter = require('./routes/bill');
+var cateRouter= require('./routes/category');
 var app = express();
 var db = require('./models/db');
 require('dotenv').config();
@@ -34,6 +35,7 @@ app.use('/auth',authRouter);
 app.use('/product',productRouter);
 app.use('/upload',uploadRouter);
 app.use('/bill',billRouter);
+app.use('/cate',cateRouter);
 // app.use('/upload',uploadRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

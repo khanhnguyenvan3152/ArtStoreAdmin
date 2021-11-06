@@ -144,13 +144,13 @@
                         <div class="form-line" style="text-transform: capitalize;">
                             <label for="selectgroup">Thể loại</label>
                             <select id="myselect" style="text-transform: capitalize;" name="grouptype" class="myselect">
-                               <% listSelect.forEach(optiongroup =>{%>
-                                    <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group.name%>>
-                                    <% optiongroup.type.forEach(option =>{ let value = optiongroup.group.alias +'|'+ option.alias ; %>
-                                        <option style="text-transform: capitalize;" value=<%= value %>><%=option.name%></option>
+                               <% categories.forEach(optiongroup =>{ if(optiongroup.isactive==true) {%>
+                                    <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group%>>
+                                    <% optiongroup.type.forEach(option =>{ let value = optiongroup.group +'|'+ option ; %>
+                                        <option style="text-transform: capitalize;" value="<%= value %>"><%=option%></option>
                                     <%})%>
                                     </optgroup>
-                               <%})%>
+                               <%}})%>
                             </select>
                     </div>
                     </div>
@@ -297,15 +297,8 @@
                 height: chieurong,
                 weight: khoiluong,
             }
-            console.log(name);
-            console.log(code);
-            console.log(quantity);
-            console.log(price);
-            console.log("category :" + category);
-            console.log(chieudai);
-            console.log(chieurong);
-            console.log(khoiluong);
-            console.log(description);
+            console.log("type"+type);
+            console.log("group"+group);
             var colors = [];
             $('.myCheckBox').each(function () {
                 if (this.checked === true) {

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
+const Category = require('../models/category');
 const path = require('path');
 const multer = require('multer');
 const upload = multer({dest:'./public/uploads/product'});
@@ -22,9 +23,9 @@ router.get('',function(req,res,next){
 })
 
 
-router.get('/add', function(req,res,next){
-    
-    res.render("partials/product/add");
+router.get('/add',async function(req,res,next){
+    var categories = await Category.find();
+    res.render("partials/product/add",{categories:categories});
 })
 
 router.post('/add',  async function(req,res,next){
@@ -56,9 +57,10 @@ router.post('/add',  async function(req,res,next){
 //         res.json(req.body);
 // })
 router.get('/detail/:productCode', async function(req,res,next){
+    var categories = await Category.find();
     let productCode = req.params.productCode;
     let product = await Product.findOne({productCode:productCode});
-    res.render("partials/product/detail",{product:product});
+    res.render("partials/product/detail",{product:product,categories:categories});
 })
 router.put('/update/:productCode', async function(req,res){
     let productCode = req.params.productCode;
