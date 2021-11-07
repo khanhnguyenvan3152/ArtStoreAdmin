@@ -27,7 +27,7 @@ router.get('/add', function(req,res,next){
     res.render("partials/product/add");
 })
 
-router.post('/add',  async function(req,res,next){
+router.post('/add', async function(req,res,next){
     let check = await Product.count({productCode:req.body.productCode}).exec();
     if(check!==0)
     {
