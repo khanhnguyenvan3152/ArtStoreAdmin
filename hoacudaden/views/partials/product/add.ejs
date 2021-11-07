@@ -144,6 +144,7 @@
                             { name:"Khác",alias:"Khác"}
                             ]
                         %>
+<<<<<<< HEAD
                         <div class="form-group form-float">
                             <div class="col-lg-1 col-sm-12" style="padding: 0;">
                                 <label for="selectBrand">Thương Hiệu</label>
@@ -171,6 +172,31 @@
                                 <%})%>
                                 </select>
                             </div>  
+=======
+                    <div class="form-group form-float">
+                        <div class="form-line" style="text-transform: capitalize;">
+                            <label for="selectBrand">Thương Hiệu</label>
+                            <select id="selectBrand" style="text-transform: capitalize;" name="grouptype" class="selectBrand">
+                               <% listBrand.forEach(optionBrand =>{%>
+                                        <option style="text-transform: capitalize;" value=<%= optionBrand.alias %>><%=optionBrand.name%></option>
+                               <%})%>
+                            </select>
+                    </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line" style="text-transform: capitalize;">
+                            <label for="selectgroup">Thể loại</label>
+                            <select id="myselect" style="text-transform: capitalize;" name="grouptype" class="myselect">
+                               <% categories.forEach(optiongroup =>{ if(optiongroup.isactive==true) {%>
+                                    <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group%>>
+                                    <% optiongroup.type.forEach(option =>{ let value = optiongroup.group +'|'+ option ; %>
+                                        <option style="text-transform: capitalize;" value="<%= value %>"><%=option%></option>
+                                    <%})%>
+                                    </optgroup>
+                               <%}})%>
+                            </select>
+                    </div>
+>>>>>>> 27e7e35625ff1c844a63c21f152d1bf08e95c97c
                     </div>
                     <div class="row clearfix">
                         <div class="form-group form-float">
@@ -342,16 +368,8 @@
                 height: chieurong,
                 weight: khoiluong,
             }
-            
-            console.log(name);
-            console.log(code);
-            console.log(quantity);
-            console.log(price);
-            console.log("category :" + category);
-            console.log(chieudai);
-            console.log(chieurong);
-            console.log(khoiluong);
-            console.log(description);
+            console.log("type"+type);
+            console.log("group"+group);
             var colors = [];
             $('.myCheckBox').each(function () {
                 if (this.checked === true) {
