@@ -76,103 +76,24 @@
                         </div>
                         <div class="help-info"></div>
                     </div>
-                    <% const listSelect=[
-                        {
-                            group: {name: "bút",alias:"but"},
-                            type: [
-                                { name:"bút line",alias:"but-line"},
-                                { name:"bút calligraphy",alias:"but-calligraphy"},
-                                { name:"bút chì phác thảo", alias:"but-chi-phac-thao"}
-                                { name:"bút gel mực trắng",alias:"but-gel-muc-trang"},
-                                { name:"bút dạ quang",alias:"but-da-quang"},
-                                { name:"bút sơn",alias:"but-son"},
-                                { name:"bút chì kim", alias:"but-chi-kim"},
-                                { name:"ngòi chì", alias:"ngòi chì"},
-                                { name:"bút sắt, mực vẽ",alias:"muc-ve"},
-                                ]
-                            },
-                            {
-                                group: {name:"màu mực",alias:"mau-muc"},
-                                type: [
-                                    { name:"màu nước",alias:"mau-nuoc"},
-                                    { name:"màu gouache",alias:"mau-gouache"},
-                                    { name:"màu acrylic",alias:"mau-acrylic"},
-                                    { name:"màu poster",alias:"mau-poster"},
-                                    { name:"phấn tiên",alias:"phan-tien"}
-                                    ]
-                            },
-                            {
-                                group: {name:"chì-màu",alias:"chi-mau"},
-                                type: [
-                                    { name:"chì màu khô",alias:"chi-mau-kho"},
-                                    { name:"chì màu nước",alias:"chi-mau-nuoc"},
-                                    ]
-                            },
-                            {
-                                group: {name:"SỔ-GIẤY",alias:"so-giay"},
-                                type: [
-                                    { name:"sổ vẽ",alias:"so-ve"},
-                                    { name:"sổ viết",alias:"so-viet"}
-                                    ]
-                            },
-                            {
-                                group: {name:"PHỤ-KIỆN",alias:"phu-kien"},
-                                type: [
-                                    { name:"phụ kiện",alias:"phu-kien"} 
-                                    ]
-                            },
-                            {
-                                group: {name:"VĂN-PHÒNG-PHẨM",alias:"van-phong"},
-                                type: [
-                                    { name:"VĂN PHÒNG PHẨM SỈ -LẺ",alias:"van-phong"}
-                                    ]
-                            }
-                        ] ;
+                    <% 
                         // '','Hưng Thịnh','Casio','Iphone','HOLBEIN','Da Đen','Da Đỏ'
                         const listBrand=[
                             { name:"Phúc Long",alias:"phuc-long"},
                             { name:"Casio",alias:"Casio"},
                             { name:"Iphone",alias:"Iphone"},
                             { name:"HOLBEIN",alias:"HOLBEIN"},
-                            { name:"Da Đen",alias:"da-den"},
+                            { name:"Da Đen",alias:"da den"},
                             { name:"Da Đỏ",alias:"da-do"},
                             { name:"KLONG", alias:"KLONG"},
                             { name:"miya", alias:"miya"},
+                            { name:"marvy", alias:"marvy"},
                             { name:"Sakura", alias:"Sakura"},
                             { name: "STABILO", alias:"STABILO"},
                             { name: "SONNET", alias:"SONNET"},
                             { name:"Khác",alias:"Khác"}
                             ]
                         %>
-<<<<<<< HEAD
-                        <div class="form-group form-float">
-                            <div class="col-lg-1 col-sm-12" style="padding: 0;">
-                                <label for="selectBrand">Thương Hiệu</label>
-                            </div>
-                            <div class="col-lg-11 col-sm-12" style="padding: 0 ;">
-                            <select id="selectBrand" style="text-transform: capitalize;" name="brand" class="selectBrand">
-                                <% listBrand.forEach(optionBrand =>{%>
-                                         <option style="text-transform: capitalize;" value=<%= optionBrand.alias %>><%=optionBrand.name%></option>
-                                <%})%>
-                             </select>
-                            </div>
-                        </div>
-                    <div class="form-group form-floa">
-                            <div class="col-lg-1 col-sm-12 col-md-1" style="padding: 0;">
-                                <label for="selectgroup">Thể loại</label>
-                            </div>
-                            <div class="col-lg-11 col-sm-12 col-md-11" style="padding: 0;">
-                                <select id="myselect" style="text-transform: capitalize;" name="grouptype" class="myselect">
-                                <% listSelect.forEach(optiongroup =>{%>
-                                        <optgroup style="text-transform: capitalize;"  label=<%=optiongroup.group.name%>>
-                                        <% optiongroup.type.forEach(option =>{ let value = optiongroup.group.alias +'|'+ option.alias ; %>
-                                            <option style="text-transform: capitalize;" value=<%= value %>><%=option.name%></option>
-                                        <%})%>
-                                        </optgroup>
-                                <%})%>
-                                </select>
-                            </div>  
-=======
                     <div class="form-group form-float">
                         <div class="form-line" style="text-transform: capitalize;">
                             <label for="selectBrand">Thương Hiệu</label>
@@ -196,7 +117,6 @@
                                <%}})%>
                             </select>
                     </div>
->>>>>>> 27e7e35625ff1c844a63c21f152d1bf08e95c97c
                     </div>
                     <div class="row clearfix">
                         <div class="form-group form-float">

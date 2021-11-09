@@ -121,20 +121,27 @@
                         ] ;
                         // '','Hưng Thịnh','Casio','Iphone','HOLBEIN','Da Đen','Da Đỏ'
                         const listBrand=[
-                        { name:"Phúc Long",alias:"phuc-long"},
-                        { name:"Casio",alias:"Casio"},
-                        { name:"Iphone",alias:"Iphone"},
-                        { name:"HOLBEIN",alias:"HOLBEIN"},
-                        { name:"Da Đen",alias:"da-den"},
-                        { name:"Da Đỏ",alias:"da-do"}]
-                        
+                            { name:"Phúc Long",alias:"phuc-long"},
+                            { name:"Casio",alias:"Casio"},
+                            { name:"Iphone",alias:"Iphone"},
+                            { name:"HOLBEIN",alias:"HOLBEIN"},
+                            { name:"Da Đen",alias:"da den"},
+                            { name:"Da Đỏ",alias:"da-do"},
+                            { name:"KLONG", alias:"KLONG"},
+                            { name:"miya", alias:"miya"},
+                            { name:"marvy", alias:"marvy"},
+                            { name:"Sakura", alias:"Sakura"},
+                            { name: "STABILO", alias:"STABILO"},
+                            { name: "SONNET", alias:"SONNET"},
+                            { name:"Khác",alias:"Khác"}
+                            ]
                         %>
                     <div class="form-group form-float">
                         <div class="form-line" style="text-transform: capitalize;">
                             <label for="selectBrand">Thương Hiệu</label>
                             <select id="selectBrand" style="text-transform: capitalize;" name="grouptype" class="selectBrand">
                                <% listBrand.forEach(optionBrand =>{%>
-                                        <option style="text-transform: capitalize;"  value=<%= optionBrand.alias %> <%= (product.brand==(optionBrand.alias)) ? 'selected' :'' %>><%=optionBrand.name%></option>
+                                        <option style="text-transform: capitalize;"  value=<%= optionBrand.name %> <%= (product.brand==(optionBrand.name)) ? 'selected' :'' %>><%=optionBrand.name%></option>
                                <%})%>
                             </select>
                     </div>

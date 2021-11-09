@@ -20,9 +20,9 @@ router.get('',function(req,res,next){
 router.get("/add", async function (req, res) {
     res.render('partials/cate/add');
 })
-router.get("/detail/:code", async function (req, res) {
-    const code = req.params.code;
-    const category = await Category.findOne({code:code});
+router.get("/detail/:id", async function (req, res) {
+    const id = req.params.id;
+    const category = await Category.findOne({_id:id});
     res.render('partials/cate/detail',{category:category});
 })
 router.post("/add",function(req,res){
@@ -41,12 +41,11 @@ router.post("/add",function(req,res){
         res.send('upload Failed !')
     })
 })
-router.put("/update/:code", async function (req, res) {
-    let code = req.params.code;
+router.put("/update/:id", async function (req, res) {
+    let id = req.params._id;
     try {
-        await Category.updateOne({ code: code }, {
+        await Category.updateOne({_id: id }, {
             $set: {
-                code: code,
                 group: req.body.group,
                 type: req.body.type,
                 image: req.body.image,

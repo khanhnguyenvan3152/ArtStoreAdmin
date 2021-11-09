@@ -106,7 +106,7 @@
             image: image
         }
         $.ajax({
-                url: '/cate/update/'+'<%- category.code %>',
+                url: '/cate/update/'+'<%- category._id %>',
                 data: JSON.stringify(data),
                 type: 'put',
                 method: 'PUT',
