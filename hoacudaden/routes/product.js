@@ -48,7 +48,8 @@ router.post('/add', async function(req,res,next){
             brand: req.body.brand,
             colors:req.body.colors,
             options:req.body.options,
-            description: req.body.description
+            description: req.body.description,
+            view: 0
         });
         product.save().then(result => {
             console.log(result);
@@ -76,6 +77,7 @@ router.put('/update/:productCode', async function(req,res){
     try {
         await Product.updateOne({ productCode: productCode }, {
             $set: {
+                productCode:req.body.productCode,
                 name: req.body.name,
                 quantity: req.body.quantity,
                 price: req.body.price,

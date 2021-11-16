@@ -1,28 +1,26 @@
 var express = require('express');
 var router = express.Router();
-const app = express();
 const admin = require('../models/admin')
-app.set('layout',)
+const passport = require('passport')
+
 //GET LOGIN, SIGNUP PAGE
-router.get('/',function(req,res,next){
-    if(req.cookies.loggedIn)
-    {
-        res.redirect('');
-    } else res.redirect('auth/login');
+router.get('/',function(req,res){
+    res.redirect('/auth/login')
 })
 
-router.get('/login',function(req,res,next){
+router.get('/login',function(req,res){
     res.render('login',{layout:false});
 })
-router.post('/login',function(req,res,next){
-    let username = req.username;
-    let password = req.password;
-    admin.findOne({username:username,password:password}).then(result=>{
-        res.cookie("loggedIn",true, { expires: new Date(Date.now() + 900000), httpOnly: true });
-        res.redirect("/");
-    }).catch(err=>{
-        console.log(err);
-    })
+router.post('/login',passport.authenticate('local',{failureRedirect:'/auth/login',failureFlash:true}),function(req,res){
+    if(req.body.rememberme)
+    {
+        req.session.cookie.maxAge = 30*24*60*60*1000;
+    }
+    else{
+        req.session.cookie.expires = false;
+    }
+    console.log('loggedIn')
+    res.redirect('/');
 })
 router.get('/signup', async function(req,res,next){
     // const newadmin = new admin();
@@ -30,5 +28,9 @@ router.get('/signup', async function(req,res,next){
     // newadmin.password = 123;
     // await newadmin.save();
     // res.send(`sign up successfully`)
+})
+router.get('/logout',function(req,res){
+    req.logOut();
+    res.redirect('/')
 })
 module.exports = router;
