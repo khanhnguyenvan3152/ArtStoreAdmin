@@ -49,8 +49,8 @@
                             <label for="selectBrand">Trạng thái</label>
                         <select id="selectactive" style="text-transform: capitalize;" name="grouptype" class="selectBrand">
                               
-                         <option style="text-transform: capitalize;" value="true" <% category.isactive==true?'selected':'' %> >hoạt động</option>
-                         <option style="text-transform: capitalize;" value="false" <% category.isactive==false?'selected':'' %>> vô hiệu hóa</option>
+                         <option style="text-transform: capitalize;" value="true" <%= category.isactive===true?'selected':'' %> >hoạt động</option>
+                         <option style="text-transform: capitalize;" value="false" <%= category.isactive===false?'selected':'' %>> vô hiệu hóa</option>
                              
                         </select>
                     </div>
