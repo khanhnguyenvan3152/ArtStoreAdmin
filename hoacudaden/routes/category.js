@@ -61,7 +61,7 @@ router.put("/update/:code", async function (req, res) {
 router.get("/test/:code",async function(req,res){
     const code = req.params.code;
     var cate = await Category.findOne({code:code});
-    res.send(cate._id);
+    res.send(cate);
 })
 function getRandomString(length) {
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
