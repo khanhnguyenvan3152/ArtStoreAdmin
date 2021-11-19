@@ -185,7 +185,7 @@
                             <div class="col-sm-12">
                                 <div class="form-line">
                                     <label class="form-label">Ảnh (Lưu ý : Ảnh đầu tiên là ảnh đại diện )</label>
-                                    <input type="file" class="form-control" name="image" value="" id="file">
+                                    <input type="file" class="form-control" name="image" value="" id="file" multiple/>
                                     <button id="btnAddImage" style="margin-top: 7px;">Thêm Ảnh</button>
                                     <div id="loading">
                                                 <p><img src="/images/ajax-loader.gif"/>Vui lòng chờ !</p>
@@ -219,13 +219,19 @@
             $('#loading').show();
             $('#btnAddImage').prop('disabled', true);
             $('#file').prop('disabled', true);
-            var file_data = $('#file').prop('files')[0];
-            if (file_data == null) {
+            // var file_data = $('#file').prop('files')[0];
+            var size = $('#file').prop('files').length;
+            console.log("size " + size)
+            if (size == 0) {
                 alert('vui long chon anh');
             }
             else {
+                for (let i = 0; i < size; i++) {
+                var file_data = $('#file').prop('files')[i];
                 var form_data = new FormData();
                 form_data.append('file', file_data);
+                // var form_data = new FormData();
+                // form_data.append('file', file_data);
                 $.ajax({
                     url: '/upload', // point to server-side controller method
                     cache: false,
@@ -258,7 +264,7 @@
                         $('#file').prop('disabled', false);
                     }
                 });
-            }
+            }}
         });
         function removeProductImage(btn) {
             $(btn).parent().remove();
