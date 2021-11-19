@@ -37,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //use express ejs layouts
 app.disable('view cache')
+app.use(bodyParser.json({limit: '10mb', extended: true})) ;
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
