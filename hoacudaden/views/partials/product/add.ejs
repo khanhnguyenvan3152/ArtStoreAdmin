@@ -1,13 +1,13 @@
 <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
 <link href="/css/list_image_product.css" rel="stylesheet">
 <script src="https://cdn.quilljs.com/1.2.6/quill.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+<script src="/js/notify.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <style>
         .pull-left{
@@ -223,7 +223,11 @@
             var size = $('#file').prop('files').length;
             console.log("size " + size)
             if (size == 0) {
+<<<<<<< HEAD
                 alert('vui long chon anh');
+=======
+                alert("vui lòng chọn ảnh !");
+>>>>>>> e2a9c9eb380c8353b0fcc68e195a4dc9bd5bee2d
             }
             else {
                 for (let i = 0; i < size; i++) {
@@ -258,7 +262,7 @@
                         $('#file').prop('disabled', false);
                     },
                     error: function (response) {
-                        alert('ảnh không hợp lệ ! Vui lòng chọn ảnh khác hoặc xem lại định dạng ảnh ! ');
+                        alert("ảnh không hợp lệ ! Vui lòng chọn ảnh khác hoặc xem lại định dạng ảnh ! ");
                         $('#loading').hide();
                         $('#btnAddImage').prop('disabled', false);
                         $('#file').prop('disabled', false);
@@ -330,10 +334,10 @@
                 method: 'POST',
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    alert(data)
+                    alert(data);
                 },
                 error: function (data) {
-                    alert(data)
+                    alert(data);
                 }
             }
             )
