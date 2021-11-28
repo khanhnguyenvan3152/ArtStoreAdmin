@@ -6,6 +6,10 @@ const ProductSchema = new mongoose.Schema({
     price: Number,
     name:String,
     brand: String,
+    discount: {
+        type: Number,
+        default: 0,
+    },
     features: Object({
         width:Number,
         height:Number,
