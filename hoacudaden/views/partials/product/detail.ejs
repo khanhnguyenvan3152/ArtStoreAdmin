@@ -70,6 +70,20 @@
                         </div>
                         <div class="help-info"></div>
                     </div>
+                    <div class="row clearfix">
+                        <div class="form-group form-float">
+                            <div class="col-sm-12 col-lg-6 col-md-6">
+                                <div class="form-line">
+                                    <input type="number"  class="form-control" value="<%=product.discount%>" name="discount" id="discount">
+                                    <label class="form-label">Khuyến mãi(%)</label>
+                                </div>
+                            </div>
+                           <div class="col-sm-12 col-lg-6 col-md-6">
+                                <label>Giá sau khi giảm:</label>
+                                <span class="form-label" id="discountPrice"><%=product.price*(1-product.discount) %></span>
+                           </div>
+                        </div>
+                    </div>
                     <% const listSelect=[
                         {
                             group: {name: "bút",alias:"but"},
@@ -264,6 +278,29 @@
 
 
 <script>
+    function exportDiscountPrice(){
+        let price = $('#price').val();
+        if(price !=""){
+            let discount = parseInt($('#discount').val())
+            let value = parseInt(price);
+            let promotionPrice = value*(1-(discount/100))
+            $('#discountPrice').html(promotionPrice)
+        }
+    }
+    $('#discount').on('keyup',function(){
+        exportDiscountPrice()
+    })
+    $('#discount').on('input',function(){
+        let value = $(this).val()
+        if(value<0){
+            $(this).prop('value',0)
+            exportDiscountPrice();
+        }
+        if(value ==0)
+        {
+            exportDiscountPrice()
+        }
+    })
     $(document).ready(function (e) {
             $('#loading').hide();
 

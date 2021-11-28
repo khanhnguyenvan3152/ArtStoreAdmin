@@ -43,6 +43,7 @@ router.post('/add', async function(req,res,next){
             price: req.body.price,
             images: req.body.images,
             features:req.body.features,
+            discount: req.body.discount,
             type:req.body.type,
             group:req.body.group,
             brand: req.body.brand,
@@ -86,6 +87,7 @@ router.put('/update/:productCode', async function(req,res){
                 type:req.body.type,
                 brand: req.body.brand,
                 group:req.body.group,
+                discount: req.body.discount,
                 colors:req.body.colors,
                 brand:req.body.brand,
                 description: req.body.description
