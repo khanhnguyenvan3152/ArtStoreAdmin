@@ -20,8 +20,8 @@
                             <% outbills.forEach(element => { %>
                                <tr>
                                <td><%= element.code %></td>
-                               <td><%= element.user.name %></td>
-                               <td><%= element.user.phone %></td>
+                               <td><%= element.receiver %></td>
+                               <td><%= element.phoneContact %></td>
                                <td><%= element.totalprice %></td>
                                <% const status = ["hủy bỏ","đã tiếp nhận","đang chuẩn bị hàng","đang chuyển hàng","hoàn thành" ] ;
                                   const classStatus = ["badge badge-light","badge badge-warning","badge badge-primary","badge badge-danger"]

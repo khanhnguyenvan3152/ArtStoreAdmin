@@ -9,7 +9,10 @@ router.get('/',async function (req, res, next) {
     console.log(page);
     let pageSize = 6;
     OutBill.find().skip((page-1)*pageSize).limit(pageSize).exec((err,outbills)=>{
-        OutBill.countDocuments((err,count)=>{   
+        OutBill.countDocuments((err,count)=>{
+            let bills = outbills.map(async (bill)=>{
+              return await bill.populate('customer');
+            })
             if(err) return next(err);
             res.render('partials/bill/table',{
               outbills:outbills,
@@ -29,7 +32,7 @@ router.post('/add', async function (req, res) {
     totalprice: req.body.totalprice,
     note: req.body.note,
     products: req.body.products,
-    user: req.body.user,
+    customer: req.body.user,
     addressShip: req.body.addressShip,
     typePay: req.body.typePay,
     status: 1
@@ -46,25 +49,22 @@ router.get("/detail/:code",async function(req,res){
   const code = req.params.code;
   let getAllProducts = await Product.find();
   var bill = await OutBill.findOne({code:code});
+  await bill.populate('customer');
   res.render("partials/bill/detail",{bill:bill,products:getAllProducts});
 })
 router.put("/update/:code",async function(req,res){
   const code = req.params.code;
+  const outbill = await OutBill.findOne({code:code});
+  const checkQuantity = async (item) => {
+    let quantity = await Product.findOne({productCode:item.productCode}).quantity;
+    if(item.quantity > quantity) return false;
+    return true;
+  }
+  let result = outbill.products.every(checkQuantity);
   // var bill = await OutBill.findOne({code:code});
   try {
-    await OutBill.updateOne({ code: code }, {
-        $set: {
-          code:code,
-          totalprice: req.body.totalprice,
-          note: req.body.note,
-          products: req.body.products,
-          user: req.body.user,
-          addressShip: req.body.addressShip,
-          typePay: req.body.typePay,
-          status: req.body.state
-        }
-    })
-    res.send('update suscess');
+    if(result == true) res.send('update suscess');
+    res.status(400).send('update failed');
 } catch (error) {
     res.send('update failed !');
 }

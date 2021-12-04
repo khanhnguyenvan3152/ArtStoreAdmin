@@ -11,11 +11,9 @@ const OutbillSchema = new mongoose.Schema({
         color: String,
         quantity: Number,
     }],
-    user: {
-        name:String,
-        phone:String,
-        email:String
-    },
+    customer: {type: mongoose.Schema.Types.ObjectId,ref:'user'},
+    receiver:{type: String,default:""},
+    phoneContact:{type:String,default:""},
     addressShip: String,
     typePay:Number, 
     status: Number // hủy bỏ - đã tiếp nhận - đang chuẩn bị hàng - đang chuyển hàng - hoàn thành 
